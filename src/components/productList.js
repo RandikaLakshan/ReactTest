@@ -15,8 +15,18 @@ export default class Index extends Component {
     this.delete = this.delete.bind(this);
 
     //logged user added products
-   this.loadProducts();
+    axios.get('http://localhost:4000/product/' + this.state.user_id, {
+      headers: {
+        "Authorization": "Bearer " + sessionStorage.getItem("token")
+      }
+    }
+    ).then(response => {
+      console.log(response)
+      this.setState({ product: response.data }
 
+      )
+
+    })
   }
 
 
@@ -31,10 +41,10 @@ export default class Index extends Component {
 
 
     //products loading when the page load
-   this.loadProducts();
+    this.loadProducts();
   }
 
-  loadProducts(){
+  loadProducts() {
     axios.get('http://localhost:4000/product/' + this.state.user_id, {
       headers: {
         "Authorization": "Bearer " + sessionStorage.getItem("token")
@@ -43,7 +53,7 @@ export default class Index extends Component {
     ).then(response => {
       console.log(response)
       this.setState({ product: response.data }
-       
+
       )
 
     })
@@ -58,18 +68,18 @@ export default class Index extends Component {
       }
     }
     )
-      .then(res=>{
+      .then(res => {
         //load the array map again to show after delete
         this.loadProducts();
-        
-        
+
+
       })
-          
-          .catch(function (error) {
-            console.log(error);
-          })
-          
-          
+
+      .catch(function (error) {
+        console.log(error);
+      })
+
+
 
   }
   logOut() {

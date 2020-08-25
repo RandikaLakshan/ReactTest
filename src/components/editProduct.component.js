@@ -20,9 +20,10 @@ export default class Edit extends Component {
 
   componentDidMount() {
     //get the selected product's details
-    axios.get('http://localhost:4000/product/edit/' + this.props.match.params.id,{headers: {
-      "Authorization" : "Bearer "+sessionStorage.getItem("token")
-    }
+    axios.get('http://localhost:4000/product/edit/' + this.props.match.params.id, {
+      headers: {
+        "Authorization": "Bearer " + sessionStorage.getItem("token")
+      }
     })
       .then(response => {
         this.setState({
@@ -62,16 +63,18 @@ export default class Edit extends Component {
     };
 
     //selected product details are updated
-    axios.post('http://localhost:4000/product/update/' + this.props.match.params.id, obj,{headers: {
-      "Authorization" : "Bearer "+sessionStorage.getItem("token")
-    }
+    axios.post('http://localhost:4000/product/update/' + this.props.match.params.id, obj, {
+      headers: {
+        "Authorization": "Bearer " + sessionStorage.getItem("token")
+      }
     })
-      .then(res =>{ console.log(res.data)
+      .then(res => {
+        console.log(res.data)
 
         alert("Successfully updated !")
       }
-      
-      ).catch(err=>{
+
+      ).catch(err => {
 
         console.log(err);
       });
@@ -79,7 +82,7 @@ export default class Edit extends Component {
     this.props.history.push('/index/');
   }
 
-  logOut(){
+  logOut() {
 
     sessionStorage.clear();
     this.props.history.push('/login/')
@@ -90,7 +93,7 @@ export default class Edit extends Component {
 
       <div style={{ marginTop: 10 }}>
 
-<Link to={'/login/'} className="nav-link" onClick={this.logOut}>Log Out</Link>
+        <Link to={'/login/'} className="nav-link" onClick={this.logOut}>Log Out</Link>
 
         <h3 align="center">Product  Name</h3>
         <form onSubmit={this.onSubmit}>
@@ -104,13 +107,13 @@ export default class Edit extends Component {
               onChange={this.onChangeproductName}
             />
           </div>
-          
+
           <div className="form-group">
             <label>product Name: </label>
             <input type="text"
               required
               className="form-control"
-               value={this.state.product_description}
+              value={this.state.product_description}
               onChange={this.onChangeproductDescription}
             />
           </div>

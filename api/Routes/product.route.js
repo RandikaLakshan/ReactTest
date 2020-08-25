@@ -7,9 +7,6 @@ const jwt= require('jsonwebtoken');
 let Product = require('../Models/product.model');
 const { JsonWebTokenError } = require('jsonwebtoken');
 
-//  store products
-
-
 // get products to logged user
 productRoutes.route('/:id').get(verifyToken,function (req, res) {
   jwt.verify(req.token,"somesupersecretkey",(err,data)=>{
