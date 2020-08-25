@@ -44,8 +44,9 @@ export default class Login extends Component {
                 sessionStorage.setItem("userId", res.data.userId);
                 sessionStorage.setItem("token", res.data.token);
                 sessionStorage.setItem("userEmail", res.data.email)
+                sessionStorage.setItem("userFirstName", res.data.first_name)
 
-                this.props.history.push('/index');
+                this.props.history.push('/ProductList');
             }
             else if (res.data.message == "Invalid Email") {
 

@@ -33,7 +33,7 @@ loginRoute.route('/loginUser').post(function (req, res) {
             });
            
 
-            return res.send({ userId: userToken._id, email: userToken.email, token: token, tokenExpiration: 1 })
+            return res.send({ userId: userToken._id, email: userToken.email,first_name:userToken.first_name, token: token, tokenExpiration: 1 })
         }).catch(err => {
 
             res.json({ 'error': err })

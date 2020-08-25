@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 
-export default class Index extends Component {
+export default class ProductsList extends Component {
 
   constructor(props) {
     super(props);
@@ -34,6 +34,7 @@ export default class Index extends Component {
   componentDidMount() {
 
 
+
     if (!sessionStorage.getItem("token")) {
       alert("please login")
       this.props.history.push('/login/')
@@ -57,6 +58,7 @@ export default class Index extends Component {
       )
 
     })
+   
   }
 
   delete(e) {
@@ -89,6 +91,17 @@ export default class Index extends Component {
   }
 
   render() {
+    if(this.state.product.length==0){
+      return(
+        <div>
+        <Link to={'/login'} className="nav-link" onClick={this.logOut}>Log Out</Link>
+
+          <h1 align="center">No Products from you</h1>
+          <p align="center">Hi !,      {sessionStorage.getItem("userFirstName")}</p>
+        
+        </div>
+      )
+    }else{
     return (
       <div>
         <Link to={'/login'} className="nav-link" onClick={this.logOut}>Log Out</Link>
@@ -138,5 +151,6 @@ export default class Index extends Component {
         </table>
       </div>
     );
+          }
   }
 }

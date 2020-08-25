@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 
-export default class Edit extends Component {
+export default class EditProducts extends Component {
   constructor(props) {
     super(props);
     this.onChangeproductName = this.onChangeproductName.bind(this);
@@ -79,7 +79,7 @@ export default class Edit extends Component {
         console.log(err);
       });
 
-    this.props.history.push('/index/');
+    this.props.history.push('/ProductList/');
   }
 
   logOut() {
@@ -109,7 +109,7 @@ export default class Edit extends Component {
           </div>
 
           <div className="form-group">
-            <label>product Name: </label>
+            <label>product Description: </label>
             <input type="text"
               required
               className="form-control"

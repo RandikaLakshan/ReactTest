@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-export default class Create extends Component {
+
+export default class UserRegister extends Component {
     constructor(props) {
 
         super(props);
@@ -21,7 +22,9 @@ export default class Create extends Component {
             email: '',
             phone: '',
             address: '',
-            password:''
+            password:'',
+            fields: {},
+            errors: {}
         }
     }
 
@@ -64,7 +67,29 @@ export default class Create extends Component {
     onSubmit(e) {
 
         e.preventDefault();
+        
+        if(this.state.first_name !==null || this.state.first_name!== ""){
+            var re = /^[a-zA-Z]+$/;
 
+            if(!re.test(String(this.state.first_name))){
+                this.state.first_name = false;
+                alert("Enter Only Letters for First Name ")
+              
+            }
+        }
+        if(this.state.last_name !==null || this.state.last_name!== ""){
+            var re = /^[a-zA-Z]+$/;
+
+            if(!re.test(String(this.state.last_name))){
+                this.state.last_name = false;
+                alert("Enter Only Letters for Last Name ")
+              
+            }
+        }
+
+        if((this.state.first_name )   &&  (this.state.last_name)){
+       
+        
         //check the mail whether already exists or not
         axios.get('http://localhost:4000/user/findById/'+this.state.email)
         .then(res => {console.log(res.data.status)
@@ -90,7 +115,7 @@ export default class Create extends Component {
                     .then(res =>{
                         alert("Registered Successfully !")
 
-                        this.props.history.push('/index')
+                        this.props.history.push('/login')
                     }
         
                     ).catch(err => {
@@ -121,7 +146,7 @@ export default class Create extends Component {
             console.log(err);
         });
 
-       
+    }
     }
 
     render() {
@@ -132,8 +157,9 @@ export default class Create extends Component {
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label>First Name </label>
-                        <input type="text"
+                        <input type="name"
                             required
+                           
                             className="form-control"
                             value={this.state.first_name}
                             onChange={this.onChangeFirstName

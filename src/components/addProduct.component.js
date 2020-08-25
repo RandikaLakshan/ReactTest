@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 
-export default class  extends Component {
+export default class AddProducts extends Component {
   constructor(props) {
     super(props);
     this.onChangeproductName = this.onChangeproductName.bind(this);
